@@ -1,8 +1,13 @@
 from fastapi import FastAPI
+
+from routes import user_routes
+
 from db import models
 from db.database import engine
 
 app = FastAPI()
+
+app.include_router(user_routes.router)
 
 
 @app.get('/')
