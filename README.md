@@ -1,29 +1,32 @@
 # FastAPI cource practice app "Photo Album"
 
-## Create virtual environment
+## Backend: FastAPI
+
+### Create virtual environment
 
 python -m venv myvenv
 
-## Activate virtual environment
+### Activate virtual environment
 
 - Windows: myvenv\Scripts\activate
 - Linux: source myvenv/bin/activate
 
-## Install libs & packeges
+### Install libs & packeges
 
 - python -m pip install --upgrade pip
 - pip install -r requirements.txt
 
-## Start app
+### Start app
 
-- cd ./src/
+- cd ./backend/
+- activate venv
 - uvicorn main:app --reload
 
-## Docs are on the link
+### Docs are on the link
 
 - http://localhost:8000/docs
 - http://localhost:8000/redoc
 
-## Put in JWT secret in .env
+### Put in JWT secret in .env
 
 JWT_SECRET=your-secret
