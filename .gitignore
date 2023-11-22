@@ -16,6 +16,7 @@ database.sqlite3
 
 # Static folder
 /static/
+assets/
 
 # macOS
 ._*
