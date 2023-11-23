@@ -51,3 +51,12 @@ def upload_image(
     with open(path, 'w+b') as buffer:
         shutil.copyfileobj(image.file, buffer)
     return {'filename': path}
+
+
+@router.get('/delete/{id}')
+def delete_post(
+    id: int,
+    db: Session = Depends(get_db),
+    current_user: UserAuth = Depends(get_current_user)
+):
+    return db_post.delete_post(id, current_user.id, db)

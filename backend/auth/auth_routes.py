@@ -9,7 +9,7 @@ from auth.oauth2 import create_access_token
 
 
 router = APIRouter(
-    tags=['auth', 'login']
+    tags=['auth']
 )
 
 
