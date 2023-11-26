@@ -30,3 +30,28 @@ python -m venv myvenv
 ### Put in JWT secret in .env
 
 JWT_SECRET=your-secret
+
+---
+
+## Frontend: React
+
+### Install libs & packeges
+
+- npm create vite@latest
+  then
+- choose `frontend` folder
+- choose React
+- choose TypeScript
+- npm install
+
+### Start web client
+
+- npm run dev
+
+### Build web client
+
+- npm run build
+
+### The Web client is located at:
+
+- http://localhost:5173/

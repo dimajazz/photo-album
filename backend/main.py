@@ -15,7 +15,7 @@ app.include_router(post_routes.router)
 app.include_router(auth_routes.router)
 app.include_router(comment_routes.router)
 
-origins = ['http://localhost:3000']
+origins = ['http://localhost:5173']
 
 app.add_middleware(
     CORSMiddleware,
