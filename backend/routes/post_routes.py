@@ -47,10 +47,11 @@ def upload_image(
     rand_str = ''.join(random.choice(letters) for i in range(8))
     filename = f'_{rand_str}.'.join(image.filename.rsplit('.', 1))
     path = f'assets/uploaded_files/images/{filename}'
+    public_path = f'images/{filename}'
 
     with open(path, 'w+b') as buffer:
         shutil.copyfileobj(image.file, buffer)
-    return {'filename': path}
+    return {'filename': public_path}
 
 
 @router.get('/delete/{id}')
