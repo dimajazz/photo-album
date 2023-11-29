@@ -1,0 +1,83 @@
+.modalWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: hsl(0, 0%, 0%, 0.5);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(0.3rem);
+  z-index: 30;
+  transition: 0.5s linear all;
+  animation: 0.5s modalWrapper-animate;
+}
+
+.modalWrapper .modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 70%;
+  height: auto;
+  transition: 0.5s linear all;
+  animation: 0.5s modal-animate;
+}
+
+.modalWrapper .closeBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 3rem;
+  color: hsl(0, 0%, 50%);
+  background-color: transparent;
+  border: 0px;
+  padding: 0;
+  margin: 0;
+  line-height: 0.7em;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s linear all;
+  z-index: 35;
+  box-shadow: none;
+}
+.modalWrapper .closeBtn:hover {
+  color: #000;
+}
+
+@keyframes modalWrapper-animate {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-animate {
+  from {
+    transform: scale(0.3);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modalWrapper .modal {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 768.99px) and (max-width: 992px) {
+  .modalWrapper .modal {
+    max-width: 85%;
+  }
+}

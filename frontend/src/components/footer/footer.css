@@ -1,0 +1,14 @@
+footer {
+    padding: 1rem;
+    text-align: center;
+}
+
+footer a {
+    cursor: pointer;
+    color: #000;
+    transition: all 0.3s ease-in-out;
+}
+
+footer a:hover {
+    color: #fff;
+}

@@ -1,8 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: hsl(0, 15%, 66%);
 }
 
-#root {
+.app {
   display: block;
   position: relative;
   width: 100%;
@@ -12,18 +16,18 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
-.app-title {
+.app .app-title {
   font-family: 'Shadows Into Light', cursive;
   font-size: 5em;
   text-align: center;
 }
 
-.posts-container {
+.app .posts-container {
   display: flex;
   position: relative;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: clamp(1rem, 10vw + 0.5rem, 2rem);
+  gap: 2rem;
   width: 100%;
   height: auto;
   max-width: 80%;
@@ -31,8 +35,20 @@ body {
   padding: clamp(1rem, 10vw + 0.5rem, 4rem);
 }
 
-.posts-container .no-posts {
+.app .posts-container .no-posts {
   width: 100%;
   font-size: 3em;
   text-align: center;
+}
+
+@media screen and (width < 1200px) {
+  .app .posts-container {
+    max-width: 100%;
+  }
+}
+
+@media screen and (1200px < width < 1440px) {
+  .app .posts-container {
+    max-width: 90%;
+  }
 }

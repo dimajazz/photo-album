@@ -1,0 +1,43 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  border-radius: 7px;
+  padding: clamp(1rem, 10vw + 0.1px, 1.5rem);
+  background-color: hsl(0, 0%, 100%);
+  margin-bottom: 2rem;
+  box-shadow: 0 0.3rem 0.5rem 0.5rem hsla(0, 0%, 0%, 0.15);
+}
+
+.card .card-header .card-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 1rem;
+  border-radius: 7px;
+}
+
+.card .card-header .card-title {
+  font-size: clamp(1em, 5vw + 0.1em, 2em);
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  font-family: 'Shadows Into Light', cursive;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.card .card-header .card-body {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (width <= 425px) {
+  .card .card-header .card-img {
+    height: 200px;
+  }
+}
