@@ -17,3 +17,10 @@ export type CommentType = {
   text: string;
   timestamp: Date;
 };
+
+export type UserDataType = {
+  access_token: string;
+  token_type: 'bearer';
+  user_id: number;
+  username: string;
+};

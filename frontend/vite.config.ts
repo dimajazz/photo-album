@@ -9,8 +9,10 @@ export default defineConfig({
       assets: '/src/assets',
       components: '/src/components',
       hooks: '/src/hooks',
+      contexts: '/src/contexts',
       types: '/src/utilities/types',
-      constants: '/src/utilities/constants'
-    }
+      servises: '/src/utilities/servises',
+      constants: '/src/utilities/constants',
+    },
   },
 });

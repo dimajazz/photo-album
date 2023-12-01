@@ -18,7 +18,9 @@
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],
       "hooks/*": ["hooks/*"],
+      "contexts/*": ["contexts/*"],
       "types/*": ["utilities/types/*"],
+      "servises/*": ["utilities/servises/*"],
       "constants/*": ["utilities/constants/*"]
     },
 

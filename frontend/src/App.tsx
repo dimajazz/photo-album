@@ -5,6 +5,8 @@ import { Footer } from 'components/footer/footer';
 import { Post } from 'components/post/post';
 import { Modal } from 'components/modal/modal';
 
+import { AuthProvider } from 'contexts/user.contexts';
+
 import type { PostType } from 'types/types';
 import { BASE_APP_URL } from 'constants/constants';
 
@@ -30,23 +32,25 @@ function App() {
   }, []);
 
   return (
-    <div className='app'>
-      <Header setIsModalShown={setIsModalShown} setModalChilren={setModalChilren} />
-      <h1 className='app-title'>Photo Album</h1>
-      <div className='posts-container'>
-        {posts.length ? (
-          posts.map((post) => <Post {...post} key={post.id} />)
-        ) : (
-          <p className='no-posts'>
-            There are no Photos here yet. Add yours. Be first.
-          </p>
-        )}
+    <AuthProvider>
+      <div className='app'>
+        <Header setIsModalShown={setIsModalShown} setModalChilren={setModalChilren} />
+        <h1 className='app-title'>Photo Album</h1>
+        <div className='posts-container'>
+          {posts.length ? (
+            posts.map((post) => <Post {...post} key={post.id} />)
+          ) : (
+            <p className='no-posts'>
+              There are no Photos here yet. Add yours. Be first.
+            </p>
+          )}
+        </div>
+        <Footer />
+        <Modal isModalShown={isModalShown} setIsModalShown={setIsModalShown}>
+          {modalChilren}
+        </Modal>
       </div>
-      <Footer />
-      <Modal isModalShown={isModalShown} setIsModalShown={setIsModalShown}>
-        {modalChilren}
-      </Modal>
-    </div>
+    </AuthProvider>
   );
 }
 

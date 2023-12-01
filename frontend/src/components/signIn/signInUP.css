@@ -4,6 +4,7 @@
   gap: 1rem;
   align-items: stretch;
 }
+
 .sign-in-up-form .form-input {
   border-radius: 8px;
   border: 1px solid #ccc;
