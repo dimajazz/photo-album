@@ -9,44 +9,60 @@ export const SignInUP = (props: SignInUPProps) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setUserHandler } = useAuth()
+  const { setUserHandler } = useAuth();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const authenticate = (authProps: AuthenticateProps) => {
-      const formData = new FormData();
-      for (const [key, value] of Object.entries(authProps)) {
-        formData.append(key, value);
-      }
-
-      const endpoint = isNewUser ? 'user/new' : 'login';
-      const requestOptions = {
-        method: 'POST',
-        body: formData,
-      };
-
-      fetch(BASE_APP_URL + endpoint, requestOptions)
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw response;
-        })
-        .then((data) => {
-          setUserHandler(data);
-        })
-        .catch((error) => console.error(error.message));
-    };
-
-    if (isNewUser) {
-      const dataFromUser = { username, email, password };
-      authenticate(dataFromUser);
-    } else {
-      const dataFromUser = { username, password };
-      authenticate(dataFromUser);
-    }
+    isNewUser ? await signUp() : await signIn();
     setIsModalShown(false);
+  };
+
+  const authenticate = async (authProps: AuthProps) => {
+    const { endpoint, requestOptions } = authProps;
+
+    try {
+      const response = await fetch(BASE_APP_URL + endpoint, requestOptions);
+      const data = await response.json();
+
+      if (response.ok && data) {
+        setUserHandler(data);
+      }
+    } catch (error: any) {
+      console.error(error.message);
+      return;
+    }
+  };
+
+  const signIn = async () => {
+    const dataFromUser = { username, password };
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(dataFromUser)) {
+      formData.append(key, value);
+    }
+
+    const endpoint = 'login';
+    const requestOptions = {
+      method: 'POST',
+      body: formData,
+    };
+    const authProps: AuthProps = { endpoint, requestOptions };
+    await authenticate(authProps);
+  };
+
+  const signUp = async () => {
+    const dataFromUser = JSON.stringify({ username, email, password });
+    const endpoint = 'user/new';
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: dataFromUser,
+    };
+    const authProps = { endpoint, requestOptions };
+    await authenticate(authProps);
+    await signIn();
   };
 
   return (
@@ -90,8 +106,15 @@ export type SignInUPProps = {
   isNewUser?: boolean;
 };
 
-export type AuthenticateProps = {
-  username: string;
-  password: string;
-  email?: string;
+export type requestOptions = {
+  method: string;
+  body: FormData | string;
+  headers?: {
+    'Content-Type': string;
+  };
+};
+
+export type AuthProps = {
+  endpoint: string;
+  requestOptions: requestOptions;
 };

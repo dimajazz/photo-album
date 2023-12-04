@@ -18,23 +18,33 @@ function App() {
   const [modalChilren, setModalChilren] = useState<JSX.Element>(<></>);
 
   useEffect(() => {
-    fetch(BASE_APP_URL + 'post/all')
-      .then((response) => response.json())
-      .then((postsData) => {
-        postsData.sort((postPrev: PostType, postNext: PostType) => {
-          const timePrev = new Date(postPrev.timestamp).getTime();
-          const timeNext = new Date(postNext.timestamp).getTime();
-          return timeNext - timePrev;
-        });
-        setPosts(postsData);
-      })
-      .catch((error) => console.log(error.message));
+    const getAllPosts = async () => {
+      try {
+        const response = await fetch(BASE_APP_URL + 'post/all');
+        const posts = await response.json();
+
+        if (response.ok && posts) {
+          posts.sort((postPrev: PostType, postNext: PostType) => {
+            const timePrev = new Date(postPrev.timestamp).getTime();
+            const timeNext = new Date(postNext.timestamp).getTime();
+            return timeNext - timePrev;
+          });
+          setPosts(posts);
+        }
+      } catch (error: any) {
+        console.error(error.message);
+      }
+    };
+    getAllPosts();
   }, []);
 
   return (
     <AuthProvider>
       <div className='app'>
-        <Header setIsModalShown={setIsModalShown} setModalChilren={setModalChilren} />
+        <Header
+          setIsModalShown={setIsModalShown}
+          setModalChilren={setModalChilren}
+        />
         <h1 className='app-title'>Photo Album</h1>
         <div className='posts-container'>
           {posts.length ? (
