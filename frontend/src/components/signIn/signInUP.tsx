@@ -12,7 +12,7 @@ export const SignInUP = (props: SignInUPProps) => {
   const { setUserHandler } = useAuth();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event?.preventDefault();
 
     isNewUser ? await signUp() : await signIn();
     setIsModalShown(false);
@@ -30,7 +30,6 @@ export const SignInUP = (props: SignInUPProps) => {
       }
     } catch (error: any) {
       console.error(error.message);
-      return;
     }
   };
 

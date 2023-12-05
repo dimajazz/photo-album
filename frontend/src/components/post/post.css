@@ -1,5 +1,6 @@
 .post {
   max-width: 30%;
+  min-width: 30%;
 }
 
 .post-description {
@@ -57,11 +58,13 @@
 @media screen and (width <= 768px) {
   .post {
     max-width: 100%;
+    min-width: 100%;
   }
 }
 
 @media screen and (768px < width < 1200px) {
   .post {
     max-width: 45%;
+    min-width: 45%;
   }
 }

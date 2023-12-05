@@ -1,0 +1,42 @@
+.add-new-post .img-upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 1rem;
+  max-width: 300px;
+  text-align: center;
+  color: #000;
+  border-radius: 7px;
+  padding: clamp(1rem, 10vw + 0.1px, 1.5rem);
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0 0.3rem 0.5rem 0.5rem hsla(0, 0%, 0%, 0.15);
+}
+
+.add-new-post .img-upload-form .img-upload-form-title,
+.add-new-post .img-upload-form .img-upload-form-file {
+  border: 1px solid hsl(0, 0%, 60%);
+  outline: none;
+  border-radius: 7px;
+  padding: 0.7em;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  transition: 0.3s all ease-in-out;
+  color: #000;
+  margin-bottom: 2rem;
+}
+
+.add-new-post .img-upload-form .img-upload-form-title:focus,
+.add-new-post .img-upload-form .img-upload-form-file:focus {
+  border-color: #000;
+}
+
+.add-new-post .img-upload-form .img-upload-form-title {
+  font-size: 1em;
+}
+
+.add-new-post .img-upload-form .img-upload-form-file {
+  font-size: 0.9em;
+}
+
+.add-new-post .img-upload-form .toggler-btn {
+  margin-bottom: 2em;
+}

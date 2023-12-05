@@ -56,7 +56,7 @@ button {
 button:hover {
   color: #fff;
   transition: all 0.3s ease-in-out;
-  background-color: hsla(0, 0%, 50%, 0.7);
+  background-color: hsla(0, 16%, 7%, 0.9);
 }
 
 @media (prefers-color-scheme: light) {

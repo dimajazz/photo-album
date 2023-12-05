@@ -22,33 +22,6 @@ body {
   text-align: center;
 }
 
-.app .posts-container {
-  display: flex;
-  position: relative;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 2rem;
-  width: 100%;
-  height: auto;
-  max-width: 80%;
-  margin: 0 auto;
-  padding: clamp(1rem, 10vw + 0.5rem, 4rem);
-}
-
-.app .posts-container .no-posts {
-  width: 100%;
-  font-size: 3em;
-  text-align: center;
-}
-
-@media screen and (width < 1200px) {
-  .app .posts-container {
-    max-width: 100%;
-  }
-}
-
-@media screen and (1200px < width < 1440px) {
-  .app .posts-container {
-    max-width: 90%;
-  }
+input {
+  font-family: 'Courier New', Courier, monospace;
 }

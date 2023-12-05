@@ -1,7 +1,7 @@
 export const setToLocalStorageWithExpiry = ({
   value,
   key = LOCAL_STORAGE_DEFAULT_KEY,
-  ttl = 2.16e7,
+  ttl = 1.8e6,
 }: StorageItemProps) => {
   const now = new Date().getTime();
   const item = {
