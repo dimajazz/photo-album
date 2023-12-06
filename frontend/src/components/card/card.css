@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: clamp(280px, calc(10vw + 20px), 500px);
   height: fit-content;
   border-radius: 7px;
-  padding: clamp(1rem, 10vw + 0.1px, 1.5rem);
+  padding: clamp(1rem, calc(10vw + 0.1vw), 1.5rem);
   background-color: hsl(0, 0%, 100%);
   margin-bottom: 2rem;
   box-shadow: 0 0.3rem 0.5rem 0.5rem hsla(0, 0%, 0%, 0.15);
@@ -20,7 +21,7 @@
 }
 
 .card .card-header .card-title {
-  font-size: clamp(1em, 5vw + 0.1em, 2em);
+  font-size: 2em;
   font-weight: 700;
   color: #000;
   text-align: center;

@@ -16,8 +16,7 @@
   gap: 0.5rem;
   text-transform: capitalize;
   margin-bottom: 1rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1rem;
   border-top: 1px solid hsl(0, 0%, 50%);
   border-bottom: 1px solid hsl(0, 0%, 50%);
 }
@@ -29,6 +28,11 @@
 
 .post-description .post-creator p {
   font-style: italic;
+  font-size: 0.8em;
+}
+
+.post-description .post-creator .del-btn {
+  margin-bottom: 1rem;
 }
 
 .post-description .post-comments-container .comment {

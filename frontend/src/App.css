@@ -7,10 +7,14 @@ body {
 }
 
 .app {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   font-family: 'Courier New', Courier, monospace;
@@ -18,7 +22,8 @@ body {
 
 .app .app-title {
   font-family: 'Shadows Into Light', cursive;
-  font-size: 5em;
+  font-size: clamp(3em, calc(10vw + 1em), 5em);
+  word-wrap: break-word;
   text-align: center;
 }
 

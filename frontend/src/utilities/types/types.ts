@@ -10,6 +10,7 @@ export type PostType = {
 
 export type PostCreatorDisplayType = {
   username: string;
+  id: number;
 };
 
 export type CommentType = {

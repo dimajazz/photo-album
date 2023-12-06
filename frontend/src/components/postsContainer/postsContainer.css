@@ -8,12 +8,12 @@
   height: auto;
   max-width: 80%;
   margin: 0 auto;
-  padding: clamp(1rem, 10vw + 0.5rem, 4rem);
+  padding: clamp(1rem, calc(10vw + 0.5rem), 4rem);
 }
 
 .posts-container .no-posts {
   width: 100%;
-  font-size: 3em;
+  font-size: clamp(1em, calc(5vw + 0.1em), 3em);
   text-align: center;
 }
 

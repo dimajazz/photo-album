@@ -20,8 +20,10 @@ function App() {
           setIsModalShown={setIsModalShown}
           setModalChilren={setModalChilren}
         />
-        <h1 className='app-title'>Photo Album</h1>
-        <PostsContainer />
+        <div>
+          <h1 className='app-title'>Photo Album</h1>
+          <PostsContainer />
+        </div>
         <Footer />
         <Modal isModalShown={isModalShown} setIsModalShown={setIsModalShown}>
           {modalChilren}
