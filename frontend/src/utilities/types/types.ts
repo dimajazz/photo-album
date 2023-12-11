@@ -4,6 +4,7 @@ export type PostType = {
   image_url_type: string;
   caption: string;
   timestamp: Date;
+  likes: LikeType[];
   creator: PostCreatorDisplayType;
   comments: CommentType[];
 };
@@ -14,8 +15,10 @@ export type PostCreatorDisplayType = {
 };
 
 export type CommentType = {
+  id: number;
   username: string;
   text: string;
+  likes: LikeType[];
   timestamp: Date;
 };
 
@@ -24,4 +27,9 @@ export type UserDataType = {
   token_type: 'bearer';
   user_id: number;
   username: string;
+};
+
+export type LikeType = {
+  user_id: number;
+  post_id: number;
 };

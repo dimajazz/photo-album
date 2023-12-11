@@ -1,0 +1,101 @@
+.commetns-section .commetns-section-header button {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+
+.commetns-section .commetns-section-header h4 {
+  margin-bottom: 1rem;
+}
+
+.commetns-section .commetns-section-header .add-new-comment-btn {
+  margin-top: 1rem;
+}
+
+.commetns-section .commetns-section-header .comment-form {
+  margin: 1rem 0;
+}
+
+.commetns-section .commetns-section-header .comment-form textarea {
+  width: 100%;
+  min-height: 100px;
+  margin-bottom: 1rem;
+  resize: none;
+}
+
+.commetns-section .commetns-section-header .comments-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 0;
+}
+
+.commetns-section .commetns-section-header .comments-title h4 {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin: 0;
+}
+
+.commetns-section .commetns-section-header .comments-title .comments-number {
+  display: flex;
+  color: hsl(0, 0%, 80%);
+  width: 35px;
+  height: auto;
+  margin-right: 0.5rem;
+}
+
+.commetns-section
+  .commetns-section-header
+  .comments-title
+  .comments-number
+  .message-icon {
+  width: 20px;
+  height: auto;
+  margin-right: 0.3rem;
+}
+
+.commetns-section .post-comments-container .comment {
+  display: block;
+  position: relative;
+  padding: 1rem 0;
+  border-top: 1px dashed hsl(0, 0%, 70%);
+}
+
+.commetns-section .post-comments-container .comment .scissors-icon {
+  display: block;
+  position: absolute;
+  width: 25px;
+  height: auto;
+  top: -0.8rem;
+  left: -1rem;
+  z-index: 3;
+  color: hsl(0, 0%, 80%);
+}
+
+.commetns-section .post-comments-container .comment p {
+  margin: 0.5em 0;
+}
+
+.commetns-section .post-comments-container .comment .comment-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commetns-section
+  .post-comments-container
+  .comment
+  .comment-header
+  .comment-author {
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.commetns-section .post-comments-container .comment .comment-body {
+  margin: 0;
+}
+
+.commetns-section .post-comments-container .comment .comment-footer {
+  display: block;
+  font-size: 0.8em;
+  font-style: italic;
+}

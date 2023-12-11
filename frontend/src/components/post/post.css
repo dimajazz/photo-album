@@ -6,6 +6,7 @@
 .post-description {
   color: #000;
   transition: all 0.3s ease-in-out;
+  margin-top: 1rem;
 }
 
 .post-description .post-creator {
@@ -15,8 +16,7 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   text-transform: capitalize;
-  margin-bottom: 1rem;
-  padding-top: 1rem;
+  padding: 1rem 0;
   border-top: 1px solid hsl(0, 0%, 50%);
   border-bottom: 1px solid hsl(0, 0%, 50%);
 }
@@ -32,30 +32,34 @@
 }
 
 .post-description .post-creator .del-btn {
-  margin-bottom: 1rem;
+  margin: 0 auto;
 }
 
-.post-description .post-comments-container .comment {
-  margin-bottom: 2em;
+.post-header,
+.post-footer {
+  display: flex;
+  align-items: center;
 }
 
-.post-description .post-comments-container .comment i {
-  display: block;
-  font-size: 0.8em;
+.post-header {
+  justify-content: space-between;
 }
 
-.more-less {
+.post-footer {
+  justify-content: end;
+}
+
+.post-header .more-less-toggler,
+.post-footer .more-less-toggler {
   text-align: right;
-}
-
-.more-less span {
   display: inline-block;
   color: hsl(0, 0%, 50%);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
-.more-less span:hover {
+.post-header .more-less-toggler:hover,
+.post-footer .more-less-toggler:hover {
   color: #000;
 }
 

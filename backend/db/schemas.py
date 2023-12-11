@@ -31,13 +31,25 @@ class PostCreatorDisplay(BaseModel):
         from_attributes = True
 
 
+class CommentLikeBase(BaseModel):
+    user_id: int
+    comment_id: int
+
+
 class Comment(BaseModel):
+    id: int
     text: str
     username: str
+    likes: list[CommentLikeBase]
     timestamp: datetime
 
     class Config():
         from_attributes = True
+
+
+class PostLikeBase(BaseModel):
+    user_id: int
+    post_id: int
 
 
 class PostDisplay(BaseModel):
@@ -45,6 +57,7 @@ class PostDisplay(BaseModel):
     image_url: str
     image_url_type: str
     caption: str
+    likes: list[PostLikeBase]
     timestamp: datetime
     creator: PostCreatorDisplay
     comments: list[Comment]
@@ -60,6 +73,7 @@ class UserAuth(BaseModel):
 
 
 class CommentBase(BaseModel):
+    id: int
     username: str
     text: str
     post_id: int

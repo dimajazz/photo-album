@@ -7,7 +7,7 @@ import shutil
 
 from db.schemas import PostBase, PostDisplay, UserAuth
 from db.database import get_db
-from db import db_post
+from db import db_post, db_like
 from auth.oauth2 import get_current_user
 
 
@@ -61,3 +61,12 @@ def delete_post(
     current_user: UserAuth = Depends(get_current_user)
 ):
     return db_post.delete_post(id, current_user.id, db)
+
+
+@router.post('/{target_id}/like')
+def toggle_like(
+    target_id: int,
+    current_user: UserAuth = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    return db_like.toggle_like_on_target(target_id, current_user.id, 'post', db)

@@ -27,6 +27,20 @@ body {
   text-align: center;
 }
 
-input {
+input, 
+textarea {
   font-family: 'Courier New', Courier, monospace;
+  border: 1px solid hsl(0, 0%, 60%);
+  outline: none;
+  border-radius: 7px;
+  padding: 0.7em;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  transition: 0.3s all ease-in-out;
+  color: #000;
+  margin-bottom: 2rem;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #000;
 }

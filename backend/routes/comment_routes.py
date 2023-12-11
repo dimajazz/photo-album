@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm.session import Session
 
 from db.database import get_db
-from db import db_comment
+from db import db_comment, db_like
 from db.schemas import CommentBase, UserAuth
 from auth.oauth2 import get_current_user
 
@@ -25,3 +25,12 @@ def create_comment(
     currnet_user: UserAuth = Depends(get_current_user)
 ):
     return db_comment.create(request, db)
+
+
+@router.post('/{comment_id}/like')
+def toggle_post_like(
+    comment_id: int,
+    current_user: UserAuth = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    return db_like.toggle_like_on_target(comment_id, current_user.id, 'comment', db)

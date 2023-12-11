@@ -13,6 +13,7 @@ export default defineConfig({
       types: '/src/utilities/types',
       servises: '/src/utilities/servises',
       constants: '/src/utilities/constants',
+      formatters: '/src/utilities/formatters',
     },
   },
 });

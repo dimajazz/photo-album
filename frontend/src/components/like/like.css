@@ -1,0 +1,26 @@
+.like-container {
+    display: flex;
+    position: relative;
+    
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.like-container .like-amount {
+    display: block;
+    position: relative;
+    font-size: 0.8em;
+    color: hsl(0, 0%, 50%);
+}
+
+.like-container .like {
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+    color: hsl(0, 0%, 70%);
+}
+
+.like-container .like.active {
+    color: hsla(0, 50%, 40%, 0.8);
+}

@@ -1,0 +1,6 @@
+.icon.svg {
+  display: block;
+  position: relative;
+  font-size: 0.8em;
+  color: hsl(0, 0%, 50%);
+}

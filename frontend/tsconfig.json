@@ -21,7 +21,8 @@
       "contexts/*": ["contexts/*"],
       "types/*": ["utilities/types/*"],
       "servises/*": ["utilities/servises/*"],
-      "constants/*": ["utilities/constants/*"]
+      "constants/*": ["utilities/constants/*"],
+      "formatters/*": ["utilities/formatters/*"]
     },
 
     /* Linting */
