@@ -3,7 +3,7 @@ from sqlalchemy.orm.session import Session
 
 from db.database import get_db
 from db import db_comment, db_like
-from db.schemas import CommentBase, UserAuth
+from db.schemas import CommentBase, UserAuth, Comment
 from auth.oauth2 import get_current_user
 
 
@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.get('/all/{post_id}')
+@router.get('/all/{post_id}', response_model=list[Comment])
 def get_all_post_comments(post_id: int, db: Session = Depends(get_db)):
     return db_comment.get_all(post_id, db).all()
 

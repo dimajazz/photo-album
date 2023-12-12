@@ -16,6 +16,7 @@ export const SortSelector = (props: SortSelectorProps) => {
         <select
         className='sort-selector'
         value={selectedValue}
+        name='sort'
         disabled={isDisabled}
         onChange={(event) => setSelectedValue(event?.target.value as SortType)}
         >

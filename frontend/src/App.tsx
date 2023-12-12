@@ -22,7 +22,7 @@ function App() {
         />
         <div>
           <h1 className='app-title'>Photo Album</h1>
-          <PostsContainer />
+          <PostsContainer setIsModalShown={setIsModalShown} setModalChilren={setModalChilren} />
         </div>
         <Footer />
         <Modal isModalShown={isModalShown} setIsModalShown={setIsModalShown}>

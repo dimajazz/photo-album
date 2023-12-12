@@ -73,7 +73,6 @@ class UserAuth(BaseModel):
 
 
 class CommentBase(BaseModel):
-    id: int
     username: str
     text: str
     post_id: int

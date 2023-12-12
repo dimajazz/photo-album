@@ -8,27 +8,79 @@ import { useAuth } from 'contexts/user.contexts';
 import { FormatteNumber } from 'formatters/metricNumberFormatter';
 import { SortType, sortItems } from 'formatters/sortItems';
 import { CommentType } from 'types/types';
-import { NEWEST } from 'constants/constants';
+import { NEWEST, BASE_APP_URL } from 'constants/constants';
 
 import './comments.css';
 
 export const Comments = (props: CommentProps) => {
-  const { comments: initialComments } = props;
+  const { comments: initialComments, postId } = props;
   const [isCommentFormVisible, setIsCommentFormVisible] = useState(false);
   const [comments, setComments] = useState(initialComments);
-  const [commentMessage, setCommentMessage] = useState('');
+  const [newComment, setNewComment] = useState('');
   const { userData } = useAuth();
   const [sortBy, setSortBy] = useState<SortType>(NEWEST);
   const [isSortOnPending, setIsSortOnPending] = useState(true);
 
-  const addNewCommemt = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const addNewCommemt = async (event: React.FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
 
-    setCommentMessage('');
+    const requestDataStr = JSON.stringify({
+      username: userData?.username,
+      text: newComment,
+      post_id: postId,
+    });
+    const requestOptions = {
+      method: 'POST',
+      headers: new Headers({
+        Authorization: userData?.token_type + ' ' + userData?.access_token,
+        'Content-Type': 'application/json',
+      }),
+      body: requestDataStr,
+    };
+    const endpoint = BASE_APP_URL + 'comment/new';
+
+    try {
+      const response = await fetch(endpoint, requestOptions);
+      const data = await response.json();
+
+      if (response.ok && data) {
+        await getAllComments();
+        return data;
+      } else {
+        return response;
+      }
+    } catch (error: any) {
+      console.error(error.message);
+    } finally {
+      setNewComment('');
+    }
+  };
+
+  const getAllComments = async () => {
+    const endpoint = BASE_APP_URL + 'comment/all/' + postId;
+
+    try {
+      const response = await fetch(endpoint);
+      const data = await response.json();
+
+      if (response.ok && data) {
+        const sortedData = sortItems({
+          items: data,
+          sortType: sortBy,
+        }) as CommentType[];
+        
+        setComments(sortedData);
+        return data;
+      } else {
+        return response;
+      }
+    } catch (error: any) {
+      console.error(error.message);
+    }
   };
 
   const commentMessageHandler = (message: string) => {
-    setCommentMessage(message);
+    setNewComment(message);
   };
 
   const toggleCommemtForm = () => {
@@ -67,7 +119,8 @@ export const Comments = (props: CommentProps) => {
                   placeholder='Leave your comment'
                   minLength={1}
                   maxLength={300}
-                  value={commentMessage}
+                  value={newComment}
+                  name='comment'
                   required
                 />
                 <button type='submit'>Send</button>
@@ -116,4 +169,7 @@ export const Comments = (props: CommentProps) => {
   );
 };
 
-type CommentProps = { comments: CommentType[] };
+type CommentProps = {
+  comments: CommentType[];
+  postId: number;
+};

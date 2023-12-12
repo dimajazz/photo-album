@@ -10,7 +10,8 @@ import { SortType } from 'formatters/sortItems';
 import { sortItems } from 'formatters/sortItems';
 import './postsContainer.css';
 
-export const PostsContainer = () => {
+export const PostsContainer = (props: postsContainerProps) => {
+  const { setIsModalShown, setModalChilren } = props;
   const [posts, setPosts] = useState<PostType[]>([]);
   const [sortBy, setSortBy] = useState<SortType>(NEWEST);
   const [isSortOnPending, setIsSortOnPending] = useState(true);
@@ -22,10 +23,10 @@ export const PostsContainer = () => {
         const posts = await response.json();
 
         if (response.ok && posts) {
-          const newItems = (sortItems({
+          const newItems = sortItems({
             items: posts,
             sortType: NEWEST,
-          })) as PostType[];
+          }) as PostType[];
           setPosts(newItems);
           setIsSortOnPending(false);
         }
@@ -44,10 +45,10 @@ export const PostsContainer = () => {
     }) as PostType[];
     setPosts(newItems);
     setIsSortOnPending(false);
-  }, [sortBy])
+  }, [sortBy]);
 
   useEffect(() => {
-    sortItemsMemo()
+    sortItemsMemo();
   }, [sortBy]);
 
   return (
@@ -61,7 +62,14 @@ export const PostsContainer = () => {
       />
       <div className='posts-container'>
         {posts.length ? (
-          posts.map((post) => <Post {...post} key={post.id} />)
+          posts.map((post) => (
+            <Post
+              post={post}
+              key={post.id}
+              setIsModalShown={setIsModalShown}
+              setModalChilren={setModalChilren}
+            />
+          ))
         ) : (
           <p className='no-posts'>
             There are no Photos here yet. Add yours. Be first.
@@ -70,4 +78,9 @@ export const PostsContainer = () => {
       </div>
     </>
   );
+};
+
+type postsContainerProps = {
+  setModalChilren: React.Dispatch<React.SetStateAction<JSX.Element>>;
+  setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
 };

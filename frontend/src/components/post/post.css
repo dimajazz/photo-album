@@ -63,6 +63,18 @@
   color: #000;
 }
 
+.del-confirm {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 7px;
+  padding: 1rem;
+  color: hsl(0, 0%, 0%);
+}
+
+.del-confirm .confirm-btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media screen and (width <= 768px) {
   .post {
     max-width: 100%;

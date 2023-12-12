@@ -9,7 +9,8 @@ import { PostType } from 'types/types';
 import { BASE_APP_URL } from 'constants/constants';
 import './post.css';
 
-export const Post = (post: PostProps) => {
+export const Post = (props: PostProps) => {
+  const { post } = props;
   const {
     image_url,
     image_url_type,
@@ -17,8 +18,8 @@ export const Post = (post: PostProps) => {
     creator,
     id: postId,
     likes,
-  } = post;
-  const [comments, setComments] = useState(post.comments);
+  } = props.post;
+  const { setModalChilren, setIsModalShown } = props;
   const [isVisible, setIsVisible] = useState(false);
   const { userData } = useAuth();
 
@@ -30,6 +31,33 @@ export const Post = (post: PostProps) => {
   };
 
   const showDetails = () => setIsVisible((prev) => !prev);
+
+  const confirmDelete = async () => {
+    await setModalChilren(
+      <div className='del-confirm'>
+        <p>Are you sure you want to delete the post?</p>
+        <div className='confirm-btn-container'>
+          <button
+            onClick={() => {
+              setIsModalShown(false);
+              return;
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            onClick={async () => {
+              await deletePost();
+              setIsModalShown(false);
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    );
+    setIsModalShown(true);
+  };
 
   const deletePost = async () => {
     const requestsOptions = {
@@ -75,12 +103,12 @@ export const Post = (post: PostProps) => {
                     <p>{new Date(post.timestamp).toUTCString()}</p>
                   </div>
                   {creator.id === userData?.user_id && (
-                    <button className='del-btn' onClick={deletePost}>
+                    <button className='del-btn' onClick={confirmDelete}>
                       Delete
                     </button>
                   )}
                 </div>
-                <Comments comments={comments} />
+                <Comments comments={post.comments} postId={postId} />
               </div>
               <div className='post-footer'>
                 <span className='more-less-toggler' onClick={showDetails}>
@@ -95,4 +123,8 @@ export const Post = (post: PostProps) => {
   );
 };
 
-type PostProps = PostType;
+type PostProps = {
+  post: PostType;
+  setModalChilren: React.Dispatch<React.SetStateAction<JSX.Element>>;
+  setIsModalShown: React.Dispatch<React.SetStateAction<boolean>>;
+};

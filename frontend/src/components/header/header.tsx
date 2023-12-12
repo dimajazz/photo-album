@@ -31,15 +31,18 @@ export const Header = (props: HeaderProps) => {
     setIsModalShown(true);
   };
 
-  const signOut = () => setUserHandler(null);
+  const signOut = () => {
+    setUserHandler(null);
+    window.location.reload();
+  };
 
   useEffect(() => {
-    const dataFromLocalStorage = getFromLocalStorageWithExpiry()
+    const dataFromLocalStorage = getFromLocalStorageWithExpiry();
 
     if (dataFromLocalStorage) {
-      setUserHandler(dataFromLocalStorage)
+      setUserHandler(dataFromLocalStorage);
     }
-  }, [])
+  }, []);
 
   return (
     <header>

@@ -47,6 +47,7 @@ export const SignInUP = (props: SignInUPProps) => {
     };
     const authProps: AuthProps = { endpoint, requestOptions };
     await authenticate(authProps);
+    window.location.reload();
   };
 
   const signUp = async () => {

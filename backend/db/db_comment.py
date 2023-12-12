@@ -19,4 +19,4 @@ def create(request: CommentBase, db: Session):
 
 
 def get_all(post_id: int, db: Session):
-    return db.query(DBComment).filter(DBComment.id == post_id)
+    return db.query(DBComment).filter(DBComment.post_id == post_id)
