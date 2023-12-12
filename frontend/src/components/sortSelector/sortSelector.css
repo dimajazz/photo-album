@@ -1,0 +1,11 @@
+.sort {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.sort .title {
+    font-size: 1.3em;
+    margin-right: 1rem;
+}

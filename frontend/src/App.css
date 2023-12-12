@@ -28,6 +28,7 @@ body {
 }
 
 input, 
+select,
 textarea {
   font-family: 'Courier New', Courier, monospace;
   border: 1px solid hsl(0, 0%, 60%);

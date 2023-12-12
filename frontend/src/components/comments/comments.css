@@ -44,6 +44,20 @@
   margin-right: 0.5rem;
 }
 
+.commetns-section .commetns-section-header .sort {
+  justify-content: space-between;
+}
+
+.commetns-section .commetns-section-header .sort .title{
+  font-size: 1em;
+  margin: 0 1rem 0 0;
+}
+
+.commetns-section .commetns-section-header .sort .sort-selector{
+  font-size: 0.7em;
+  margin-bottom: 1rem;
+}
+
 .commetns-section
   .commetns-section-header
   .comments-title

@@ -1,25 +1,25 @@
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 import { Like } from 'components/like/like';
+import { Icon } from 'components/Icon/icon';
+import { SortSelector } from 'components/sortSelector/sortSelector';
 
 import { useAuth } from 'contexts/user.contexts';
 import { FormatteNumber } from 'formatters/metricNumberFormatter';
+import { SortType, sortItems } from 'formatters/sortItems';
 import { CommentType } from 'types/types';
+import { NEWEST } from 'constants/constants';
 
 import './comments.css';
-import { Icon } from 'components/Icon/icon';
 
 export const Comments = (props: CommentProps) => {
-  const { comments } = props;
+  const { comments: initialComments } = props;
   const [isCommentFormVisible, setIsCommentFormVisible] = useState(false);
+  const [comments, setComments] = useState(initialComments);
   const [commentMessage, setCommentMessage] = useState('');
   const { userData } = useAuth();
-
-  const sortComments = () => {
-    comments.sort((comment1, comment2) => {
-      return comment1.likes.length - comment2.likes.length;
-    });
-  };
+  const [sortBy, setSortBy] = useState<SortType>(NEWEST);
+  const [isSortOnPending, setIsSortOnPending] = useState(true);
 
   const addNewCommemt = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,6 +34,20 @@ export const Comments = (props: CommentProps) => {
   const toggleCommemtForm = () => {
     setIsCommentFormVisible((prev) => (prev = !prev));
   };
+
+  const sortItemsMemo = useCallback(() => {
+    setIsSortOnPending(true);
+    const newItems = sortItems({
+      items: comments,
+      sortType: sortBy,
+    }) as CommentType[];
+    setComments(newItems);
+    setIsSortOnPending(false);
+  }, [sortBy]);
+
+  useEffect(() => {
+    sortItemsMemo();
+  }, [sortBy]);
 
   return (
     <div className='commetns-section'>
@@ -68,15 +82,25 @@ export const Comments = (props: CommentProps) => {
             {FormatteNumber(comments.length)}
           </div>
         </div>
+        <SortSelector
+          targetType='comment'
+          selectedValue={sortBy}
+          setSelectedValue={setSortBy}
+          isDisabled={isSortOnPending}
+        />
       </div>
       {comments.length > 0 ? (
         <div className='post-comments-container'>
-          {comments.map((comment, index) => (
-            <div className='comment' key={index}>
+          {comments.map((comment) => (
+            <div className='comment' key={comment.id}>
               <Icon name='scissors' cssClass='scissors-icon' />
               <div className='comment-header'>
                 <p className='comment-author'>{comment.username}:</p>
-                <Like likes={comment.likes} likedTargetId={comment.id} likedTargetType='comment' />
+                <Like
+                  likes={comment.likes}
+                  likedTargetId={comment.id}
+                  likedTargetType='comment'
+                />
               </div>
               <p className='comment-body'>{comment.text}</p>
               <p className='comment-footer'>
